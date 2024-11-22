@@ -1,4 +1,20 @@
----
+var catalogItems = [todo];
+var catalogType = "item"; //todas o "collection" para obtener todas las prendas
+var urlBase = "https://assetdelivery.roblox.com/item/"; // o "catalog/"; para acceder a todas las prendas
+
+function loadCatalogItems() {
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", urlBase + "json?_dc=0&lang=en", true);
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            var data = JSON.parse(xhr.responseText);
+            catalogItems = data.items;
+            console.log("Número total de ítems: " + catalogItems.length);
+        }
+    };
+    xhr.send();
+}
+loadCatalogItems();
 title: Developer Console
 description: Developer Console is a tool for debugging your experience during testing or in production.
 ---
